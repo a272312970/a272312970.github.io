@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fresco初体验(二)-Fresco的二次封装"
-date: 2018-05-18
+date: 2018-05-21
 description: "Fresco的结构与用法"
 tag: Android
 ---   
