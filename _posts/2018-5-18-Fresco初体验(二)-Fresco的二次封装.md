@@ -4,6 +4,7 @@ title: "Fresco初体验(二)-Fresco的二次封装"
 date: 2018-05-18
 description: "Fresco的结构与用法"
 tag: Android
+music_link: "http://fs.w.kugou.com/201805211439/87ccd0a63d2e5d5e7b825eea61bbf3b5/G123/M09/1E/13/uw0DAFo7CmOAckvsAEUM6BGXWvo816.mp3"
 ---   
 ## 之前看过一篇文章如何二次封装Fresco，就是在load之前把属性都设置好，仿照这个思路和框架，咱们可以在其基础试一下，这次封装的最终目标是把所有加载过程都包含在一行代码中,下面简单的讲一下封装的思路(大致过程，细节太多讲不完)
 
@@ -48,11 +49,11 @@ loadLocalImage(String path, int defaultRes , int failRes,int emptyResID)
             e.printStackTrace();
         }
 ```
-### 成员变量mThumbnailPath表示本地路径
-### mThumbnailUrl表示线上路径
-### mLowThumbnailUrl表示低分辨率的图片路径
-### mFailResID表示加载失败的图片
-### mEmptyResID表示空链接时候的图片 
+### 成员变量mThumbnailPath-表示本地路径
+### mThumbnailUrl表示-线上路径
+### mLowThumbnailUrl表示-低分辨率的图片路径
+### mFailResID表示-加载失败的图片
+### mEmptyResID表示-空链接时候的图片 
 ### 先保存下来 如果链接不为空，则把链接和占位图设置进去，如果链接为空，则把空图片资源复制给默认图片mDefaultResID = mEmptyResID;
 
 ### 3，定义setSourceController()和setResourceController()方法，setSourceController()方法主要把online数据给填充好，setResourceController()主要针对本地加载的时候或者网上链接加载不出来的时候调用
