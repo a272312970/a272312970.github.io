@@ -27,6 +27,17 @@ layout: default
         {{ content }}
 
     </section>
+
+    <div id="share-button-3" class="need-share-button-default" data-share-position="bottomCenter" >说的好，分享一波</div>
+
+    <!-- needsharebutton Javascript file -->
+    <script src="/js/needsharebutton.min.js" type="text/javascript" ></script>
+    <script>
+			new needShareButton(document.getElementById('share-button-3'));
+		</script>
+    <!-- needsharebutton CSS file -->
+    <link href="/css/needsharebutton.min.css" rel="stylesheet" />
+
 </article>
 
 <!--{% include new-old.html %}-->

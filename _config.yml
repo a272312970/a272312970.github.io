@@ -10,16 +10,16 @@ url: "http://www.biazi.cn"
 
 # Comment
 comment:
-    disqus: chenzhe
+    #disqus: chenzhe
+    laibili: MTAyMC8zNjcxMS8xMzI0Ng==
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
 social:
-    weibo: volcane123@yahoo.cn
+    weibo: volcane123
     github: a272312970
     # twitter: 
     mail: 272312970@qq.com
-
 
 
 
