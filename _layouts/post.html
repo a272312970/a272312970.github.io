@@ -5,7 +5,6 @@ layout: default
 <article class="post-container post-container--single" itemscope
          itemtype="http://schema.org/BlogPosting">
     <header class="post-header">
-
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta">
             <img src="/images/calendar.png" width="20px"/>
@@ -17,6 +16,32 @@ layout: default
                     id="busuanzi_value_page_pv"></span>次</span>
             </p>
         </div>
+        {% if page.music-url %}
+        <link rel="stylesheet" href="/css/APlayer.min.css">
+        <div id="player1" class="aplayer"></div>
+        <div id="music-title" style="display : none;">{{ page.music-title }} </div>
+        <div id="music-author" style="display : none;">{{ page.music-author }}</div>
+        <div id="music-url" style="display : none;">{{ page.music-url}}</div>
+        <div id="music-pic" style="display : none;">{{ page.music-pic }}</div>
+
+        <script src="/js/APlayer.min.js"></script>
+        <script>
+
+            var ap = new APlayer({
+             element: document.getElementById('player1'),
+             narrow: false,
+            autoplay: true,
+            showlrc: false,
+            music: {
+                title: document.getElementById('music-title').innerHTML,
+                author: document.getElementById('music-author').innerHTML,
+                url: document.getElementById('music-url').innerHTML,
+                pic:  document.getElementById('music-pic').innerHTML,
+            }
+        });
+        ap.init();
+        </script>
+        {% endif %}
         <!--<span>  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530
                         height=60
                         src={{ page.music_link }}></iframe></span>-->
@@ -25,7 +50,10 @@ layout: default
 
 
     <section class="post">
+
         {{ content }}
+
+
 
     </section>
 
