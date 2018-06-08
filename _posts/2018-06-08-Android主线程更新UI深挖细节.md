@@ -100,6 +100,7 @@ public ViewRootImpl(Context context, Display display) {
 ```
  final void handleResumeActivity(IBinder token,
             boolean clearHide, boolean isForward, boolean reallyResume, int seq, String reason) {
+                // ......省略其他代码..........
   // TODO Push resumeArgs into the activity for consideration
         r = performResumeActivity(token, clearHide, reason);
         // ......
@@ -156,17 +157,16 @@ void makeVisible() {
 ```
  final void handleResumeActivity(IBinder token,
             boolean clearHide, boolean isForward, boolean reallyResume, int seq, String reason) {
-  // TODO Push resumeArgs into the activity for consideration
-       他上面还有一行代码 r = performResumeActivity(token, clearHide, reason);这个就是onresume
-      的回调，怎么证明呢？
-      
+    // ......省略其他代码..........
+    // TODO Push resumeArgs into the activity for consideration
+       r = performResumeActivity(token, clearHide, reason);
         // ......
     // ......省略其他代码..........
- r.activity.mVisibleFromServer = true;
-                mNumVisibleActivities++;
-                if (r.activity.mVisibleFromClient) {
-                    r.activity.makeVisible();
-                }
+       r.activity.mVisibleFromServer = true;
+        mNumVisibleActivities++;
+        if (r.activity.mVisibleFromClient) {
+            r.activity.makeVisible();
+        }
      // ......省略其他代码..........
      // ......
      }
