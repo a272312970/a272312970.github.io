@@ -223,7 +223,7 @@ void makeVisible() {
 
 ### 其实Android设置这条原则是因为UI线程是非同步不安全的，如果多线程都能修改UI的话，肯定会造成UI的数据错乱和调用混乱，然后UI线程也是不可能去做到线程同步，因为UI线程要处理的东西太多了，线程同步会造成效率低下甚至直接卡死，所以Android提供了Handler通信机制来处理这一问题。
 
-
+### 最后，还有一点需要特殊说明的是，Toast.show()并不是所谓的更新UI操作，Toast本质上是一个window，跟activity是平级的，而checkThread只是Activity维护的View树的行为,使用，如果在子线程中执行Toast.show()是不会报任何异常的(但是要注意Looper.prepare()和Looper.loop());
 
 
 
