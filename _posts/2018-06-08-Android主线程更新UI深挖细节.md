@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Android主线程更新UI深挖细节"
-date: 2018-06-08
+date: 2018-04-08
 description: "Android主线程更新UI"
 tag: Android
 ---
