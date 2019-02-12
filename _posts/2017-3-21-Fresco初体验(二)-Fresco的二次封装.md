@@ -4,10 +4,10 @@ title: "Fresco初体验(二)-Fresco的二次封装"
 date: 2017-03-21
 description: "Fresco的结构与用法"
 tag: Android
-music-title: '像我这样的人'
-music-author:  '毛不易'
-music-url: 'http://fs.w.kugou.com/201807301506/53b6d21c3bfe100bcf22f01c82cb1b3a/G109/M08/11/05/rQ0DAFmFw8aAHidgACnw0pPZWK4975.mp3'
-music-pic: 'http://singerimg.kugou.com/uploadpic/softhead/400/20180611/20180611160019456.jpg'
+music-title: '安和桥'
+music-author:  '宇西'
+music-url: 'http://fs.w.kugou.com/201902121544/8a3a1beb20fd6474a4689030fa3d1068/G126/M02/04/1D/vg0DAFpS7MmAP1f0ADyu3QuMd3w158.mp3'
+music-pic: 'https://imgessl.kugou.com/uploadpic/softhead/400/20180426/20180426173152776.jpg'
 ---   
 ## 之前看过一篇文章如何二次封装Fresco，就是在load之前把属性都设置好，仿照这个思路和框架，咱们可以在其基础试一下，这次封装的最终目标是把所有加载过程都包含在一行代码中,下面简单的讲一下封装的思路(大致过程，细节太多讲不完)
 
