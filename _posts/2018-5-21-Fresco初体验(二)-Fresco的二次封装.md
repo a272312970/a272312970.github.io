@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fresco初体验(二)-Fresco的二次封装"
-date: 2017-01-21
+date: 2017-03-21
 description: "Fresco的结构与用法"
 tag: Android
 music-title: '像我这样的人'
