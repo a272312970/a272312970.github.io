@@ -7,7 +7,7 @@ tag: Android
 music-title: '安和桥'
 music-author:  '宇西'
 music-url: 'http://fs.w.kugou.com/201902121544/8a3a1beb20fd6474a4689030fa3d1068/G126/M02/04/1D/vg0DAFpS7MmAP1f0ADyu3QuMd3w158.mp3'
-music-pic: 'https://imgessl.kugou.com/uploadpic/softhead/400/20180426/20180426173152776.jpg'
+music-pic: 'https://imgessl.kugou.com/stdmusic/20161028/20161028091101640493.jpg'
 ---   
 ## 之前看过一篇文章如何二次封装Fresco，就是在load之前把属性都设置好，仿照这个思路和框架，咱们可以在其基础试一下，这次封装的最终目标是把所有加载过程都包含在一行代码中,下面简单的讲一下封装的思路(大致过程，细节太多讲不完)
 
