@@ -5,7 +5,7 @@ date: 2019-7-28
 description: "Kotlin"
 tag: Kotlin 
 --- 
-### 概述
+## 概述
 Kotlin给Java开发者带来最大改变之一就是废弃了**static**修饰符。与Java不同的是在Kotlin的类中不允许你声明静态成员或方法。相反，你必须向类中添加**Companion**对象来包装这些静态引用: 差异看起来似乎很小，但是它有一些明显的不同。
 
 
