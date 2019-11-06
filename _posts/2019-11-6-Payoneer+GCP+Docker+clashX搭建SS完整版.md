@@ -87,7 +87,7 @@ sudo docker update --restart=unless-stopped ss
 
 ### 客户端配置
 下载[clashX](https://github.com/yichengchen/clashX)，**release**-**asset**-**ClashX.dmg**，下载完之后打开软件，点击配置-打开配置文件夹，打开config.yaml，在里面配置规则，这里有一份别人总结的[规则](https://github.com/Hackl0us/SS-Rule-Snippet/blob/master/LAZY_RULES/clash.yaml)，判断国外ip全走代理，其余的全不走代理，可以拷贝进来，放进去
-，还有另外一份,是匹配一些特定的网站（youtube，facebook,jcenter等等）会走代理,匹配规则设置好之后，选择出站模式为规则判断，然后退出软件重启一下就可以生效了
+，还有[另外一份](![](/resource/posts/gcp/config.yaml)),是匹配一些特定的网站（youtube，facebook,jcenter等等）会走代理,匹配规则设置好之后，选择出站模式为规则判断，然后退出软件重启一下就可以生效了
 ![](/images/posts/gcp/clashX.jpg)
 ![](/images/posts/gcp/clashX2.jpg)
 
