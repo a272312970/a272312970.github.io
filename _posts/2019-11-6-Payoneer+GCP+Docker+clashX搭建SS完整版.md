@@ -14,7 +14,7 @@ tag: 其他
 接受条款 – 同意并继续，
 需要谷歌账号，地区没有中国，选择美国，然后，在[Payoneer](https://login.payoneer.com/api/v2/internal/logout/authorize?client_id=b3d186db-4e5d-49c8-8a12-5753136af807&redirect_uri=https%3a%2f%2fmyaccount.brand.domain%2flogin%2flogin.aspx&scope=myaccount%20openid&response_type=code&state=4ef9c2d3-00d4-490f-b189-989cb55b0c20)中申请一张美国银行的储蓄卡，在收款--Global Payment Service 中增加，USD账户，默认是First Century Bank，这个GCP好像不能使用这种银行的，跟客服沟通换成Community Federal Savings Bank银行，
 
-## 2，创建服务器
+### 2，创建服务器
 
 注册成功后，登陆到后台，即可开始创建服务器。在后台左侧列表选择 Computer Engine => VM实例，进行创建：
 ![](/images/posts/gcp/chuangjian1)
@@ -85,7 +85,7 @@ sudo docker update --restart=unless-stopped ss
 到这里配置已经完成了
 
 
-### 客户端配置
+### 4，客户端配置
 下载[clashX](https://github.com/yichengchen/clashX)，**release**-**asset**-**ClashX.dmg**，下载完之后打开软件，点击配置-打开配置文件夹，打开config.yaml，在里面配置规则，这里有一份别人总结的[规则](https://github.com/Hackl0us/SS-Rule-Snippet/blob/master/LAZY_RULES/clash.yaml)，判断国外ip全走代理，其余的全不走代理，可以拷贝进来，放进去
 ，还有[另外一份](https://github.com/a272312970/chenzhe/blob/master/resource/gcp/posts/gcp/config.yaml),是匹配一些特定的网站（youtube，facebook,jcenter等等）会走代理,匹配规则设置好之后，选择出站模式为规则判断，然后退出软件重启一下就可以生效了
 ![](/images/posts/gcp/clashX.jpg)
