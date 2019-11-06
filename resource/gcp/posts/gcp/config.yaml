@@ -1,0 +1,421 @@
+#####################################
+####                             ####
+####      Chash Base Config      ####
+####                             ####
+#####################################
+
+# 日志级别
+# silent / info / warning / error / debug
+log-level: silent
+
+# HTTP 代理端口
+port: 61081
+
+# SOCKS5 代理端口
+socks-port: 61080
+
+# Redir 代理端口
+# redir-port: 7892
+
+allow-lan: false
+
+# RESTful API
+external-controller: 127.0.0.1:61090
+
+# 规则模式
+# Rule（规则） / Global（全局代理）/ Direct（全局直连）
+mode: Rule
+
+#####################################
+####                             ####
+####          Chash DNS          ####
+####                             ####
+#####################################
+
+# enhanced-mode: NORMAL(normal) / FAKEIP(fakeip) / MAPPING(redir-host)
+
+dns:
+  enable: false
+  ipv6: true
+  # listen: 0.0.0.0:53
+  enhanced-mode: redir-host
+  nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 114.114.114.114
+    - 223.6.6.6
+  fallback:
+    - tls://dns.google:853
+    - tls://1dot1dot1dot1.cloudflare-dns.com:853
+
+#####################################
+####                             ####
+####     Chash Proxy Config      ####
+####                             ####
+#####################################
+
+# Proxy
+# Shadowsocks
+# cipher:  AEAD_AES_128_GCM AEAD_AES_192_GCM AEAD_AES_256_GCM AEAD_CHACHA20_POLY1305
+# AES-128-CTR AES-192-CTR AES-256-CTR AES-128-CFB AES-192-CFB AES-256-CFB CHACHA20-IETF XCHACHA20
+
+# Proxy Group
+# url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
+# fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
+# select 用来允许用户手动选择 代理服务器 或 服务器组
+# 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
+# - { name: "auto", type: url-test, proxies: ["ss1", "ss2", "vmess1"], url: "https://www.bing.com", interval: 300 }
+# - { name: "fallback-auto", type: fallback, proxies: ["ss1", "ss2", "vmess1"], url: "https://www.bing.com", interval: 300 }
+
+Proxy:
+  ##----------区域代理-----------##
+  ##----------WORK----------##
+  - name: PROXY
+    type: ss
+    server: 1.1.1.1
+    port: 1001
+    cipher: AEAD_AES_256_GCM
+    password: xxxxxxx
+
+# Proxy Group:
+#  - { name: "PROXY", type: select, proxies: ["🏢 US-3-A-C"] }
+
+#####################################
+####                             ####
+####      Chash Rule Config      ####
+####                             ####
+#####################################
+
+Rule:
+  ##-————屏蔽域名-————##
+  ### Block
+  - DOMAIN-SUFFIX, vortex.data.microsoft.com, REJECT
+  ##-------------代理直连-------------##
+  ## Proxies
+  - DOMAIN-SUFFIX, tunnel.dragon.ivenfe.cc, DIRECT
+
+  ##-———环路局域网直连————##
+  ### LAN
+  - DOMAIN-SUFFIX, local, DIRECT
+  - IP-CIDR, 127.0.0.0/8, DIRECT
+  - IP-CIDR, 192.168.0.0/16, DIRECT
+  - IP-CIDR, 215.180.128.0/18, DIRECT
+
+  ### Hellobike LAN
+  - IP-CIDR, 172.28.0.0/16, DIRECT
+
+  ##———自有外网服务代理-———##
+  ### iVenfe
+  - DOMAIN-SUFFIX, status.ivenfe.cc, PROXY
+
+  ##———开发相关服务代理-———##
+  ### Google Dev
+  - DOMAIN-SUFFIX, android.com, PROXY
+  - DOMAIN-SUFFIX, dartlang.org, PROXY
+  - DOMAIN-SUFFIX, flutter.dev, PROXY
+  - DOMAIN-SUFFIX, pub.dev, PROXY
+  - DOMAIN-SUFFIX, dart.dev, PROXY
+
+  ### Github
+  - DOMAIN-SUFFIX, github.com, PROXY
+  - DOMAIN-SUFFIX, githubusercontent.com, PROXY
+  - DOMAIN-SUFFIX, githubassets.com, PROXY
+  - DOMAIN-SUFFIX, github.io, PROXY
+  - DOMAIN-SUFFIX, git.io, PROXY
+
+  ### Gradle
+  - DOMAIN-SUFFIX, gradle.com, PROXY
+  - DOMAIN-SUFFIX, gradle.org, PROXY
+
+  ### Material
+  - DOMAIN-SUFFIX, material.io, PROXY
+
+  ### Google Code
+  - DOMAIN-SUFFIX, googlesource.com, PROXY
+  - DOMAIN-SUFFIX, googlecode.com, PROXY
+
+  ### Chromium
+  - DOMAIN-SUFFIX, chromium.org, PROXY
+  - DOMAIN-SUFFIX, chromium.arnoldthebat.co.uk, PROXY
+
+  ### Jetbrains
+  - DOMAIN-SUFFIX, jetbrains.com, PROXY
+
+  ### Jcenter
+  - DOMAIN-SUFFIX, bintray.com, PROXY
+
+  ### Jitpack
+  - DOMAIN-SUFFIX, jitpack.io, PROXY
+
+  ### Atlassian
+  - DOMAIN-SUFFIX, atlassian.com, PROXY
+  - DOMAIN-SUFFIX, lithium.com, PROXY
+
+  ### Docker
+  - DOMAIN-SUFFIX, docker.com, PROXY
+  - DOMAIN-SUFFIX, docker.io, PROXY
+
+  ### Balena
+  - DOMAIN-SUFFIX, balena.io, PROXY
+  - DOMAIN-SUFFIX, balena-cloud.com, PROXY
+  - DOMAIN-SUFFIX, discourse-cdn.com, PROXY
+
+  ### NodeJS
+  - DOMAIN-SUFFIX, nodejs.org, PROXY
+  - DOMAIN-SUFFIX, npmjs.com, PROXY
+  - DOMAIN-SUFFIX, yarnpkg.com, PROXY
+
+  ### Sentry
+  - DOMAIN-SUFFIX, sentry.io, PROXY
+  - DOMAIN-SUFFIX, getsentry.net, PROXY
+  - DOMAIN-SUFFIX, zendesk.com, PROXY
+  - DOMAIN-SUFFIX, sentry-cdn.com, PROXY
+  - DOMAIN-SUFFIX, stripe.com, PROXY
+  - DOMAIN-SUFFIX, zdassets.com, PROXY
+
+  ### Postman
+  - DOMAIN-SUFFIX, pstmn.io, PROXY
+
+  ### 其他
+  - DOMAIN-SUFFIX, w3schools.com, PROXY
+  - DOMAIN-SUFFIX, codeweavers.com, PROXY
+
+  ##-————云服务商-————##
+  ### CDN
+  - DOMAIN-SUFFIX, s3.amazonaws.com, PROXY
+  - DOMAIN-SUFFIX, cloudfront.net, PROXY
+  - DOMAIN-SUFFIX, akamaihd.net, PROXY
+  # - DOMAIN-SUFFIX, akamaized.net, PROXY
+  # - DOMAIN-SUFFIX, fastly.net, PROXY
+
+  ### GCP
+  - DOMAIN-SUFFIX, appspot.com, PROXY
+  - DOMAIN-SUFFIX, googleapis.com, PROXY
+  - DOMAIN-SUFFIX, googleusercontent.com, PROXY
+
+  ### Firebase
+  - DOMAIN-SUFFIX, page.link, PROXY
+
+  ### 阿里云
+  - DOMAIN-SUFFIX, alibabacloud.com, PROXY
+  - DOMAIN-SUFFIX, oss-us-west-1.aliyuncs.com, PROXY
+
+  ### VPS
+  - DOMAIN-SUFFIX, anchnet.com, PROXY
+  - DOMAIN-SUFFIX, hostinger.com.hk, PROXY
+  - DOMAIN-SUFFIX, bandwagonhost.com, PROXY
+  - DOMAIN-SUFFIX, anynode.net, PROXY
+
+  - DOMAIN-SUFFIX, oraclecloud.com, PROXY
+
+  ##-———Google全家桶————##
+  ### Google CN 直连
+  - DOMAIN-SUFFIX, dl.google.com, PROXY
+
+  ### *.google
+  - DOMAIN-SUFFIX, domains.google, PROXY
+
+  ### Google CDN
+  - DOMAIN-SUFFIX, ggpht.com, PROXY
+  - DOMAIN-SUFFIX, gstatic.com, PROXY
+  - DOMAIN-SUFFIX, gvt1.com, PROXY
+
+  ### Google
+  - DOMAIN-SUFFIX, goo.gl, PROXY
+  - DOMAIN-SUFFIX, google.com, PROXY
+  - DOMAIN-SUFFIX, google.co.jp, PROXY
+  - DOMAIN-SUFFIX, google.com.hk, PROXY
+
+  ### Gmail
+  - DOMAIN-SUFFIX, gmail.com, PROXY
+
+  ### YouTube
+  - DOMAIN-SUFFIX, youtu.be, PROXY
+  - DOMAIN-SUFFIX, youtube.com, PROXY
+  - DOMAIN-SUFFIX, ytimg.com, PROXY
+  - DOMAIN-SUFFIX, googlevideo.com, PROXY
+  - DOMAIN-SUFFIX, youtube-nocookie.com, PROXY
+
+  ### Blogger
+  - DOMAIN-SUFFIX, blogger.com, PROXY
+  - DOMAIN-SUFFIX, blogspot.com, PROXY
+
+  ### Alphabet
+  - DOMAIN-SUFFIX, withgoogle.com, PROXY
+  - DOMAIN-SUFFIX, googleblog.com, PROXY
+
+  ##-————Microsoft-————##
+  - DOMAIN-SUFFIX, live.com, PROXY
+
+  ##-————视频网站-————##
+  ### Hulu
+  - DOMAIN-SUFFIX, hulu.com, PROXY
+  - DOMAIN-SUFFIX, happyon.jp, PROXY
+
+  ### Netflix
+  - DOMAIN-SUFFIX, netflix.com, PROXY
+  - DOMAIN-SUFFIX, nflxext.com, PROXY
+  - DOMAIN-SUFFIX, nflxso.net, PROXY
+  - DOMAIN-SUFFIX, nflximg.net, PROXY
+  - DOMAIN-SUFFIX, nflxvideo.net, PROXY
+
+  ##-————社交代理-————##
+  ### Telegram
+  - DOMAIN-SUFFIX, t.me, PROXY
+  - DOMAIN-SUFFIX, telegram.org, PROXY
+  - IP-CIDR, 91.108.56.190/32, PROXY
+
+  ### Twitter
+  - DOMAIN-SUFFIX, t.co, PROXY
+  - DOMAIN-SUFFIX, twitter.com, PROXY
+  - DOMAIN-SUFFIX, twimg.com, PROXY
+
+  ### Facebook
+  - DOMAIN-SUFFIX, facebook.com, PROXY
+  # - DOMAIN-SUFFIX, facebook.net, PROXY
+
+  ### Tumblr
+  - DOMAIN-SUFFIX, tumblr.com, PROXY
+
+  ### LINE
+  - DOMAIN-SUFFIX, line.me, PROXY
+  - DOMAIN-SUFFIX, line.naver.jp, PROXY
+  - DOMAIN-SUFFIX, line-scdn.net, PROXY
+
+  ##—————游戏—————##
+  ### Supercell
+  - DOMAIN-SUFFIX, brawlstars.com, PROXY
+  - DOMAIN-SUFFIX, brawlstarsgame.com, PROXY
+  - DOMAIN-SUFFIX, boombeachgame.com, PROXY
+  - DOMAIN-SUFFIX, supercell.net, PROXY
+  - DOMAIN-SUFFIX, supercell.helpshift.com, PROXY
+
+  ### Steam
+  - DOMAIN-SUFFIX, steampowered.com, PROXY
+  - DOMAIN-SUFFIX, steamcommunity.com, PROXY
+
+  ###Epic
+  - DOMAIN-SUFFIX, epicgames.com, PROXY
+  - DOMAIN-SUFFIX, unrealengine.com, PROXY
+
+  ###育碧
+  - DOMAIN-SUFFIX, ubi.com, PROXY
+
+  - DOMAIN-SUFFIX, ingress.com, PROXY
+
+  ##-————常用服务-————##
+  ### Mozilla
+  - DOMAIN-SUFFIX, cdn.mozilla.net, PROXY
+  - DOMAIN-SUFFIX, private-network.firefox.com, PROXY
+
+  ### Amazon
+  - DOMAIN-SUFFIX, amazon.co.jp, PROXY
+  - DOMAIN-SUFFIX, amazon.com, PROXY
+
+  ##-————工具代理-————##
+  ### Dropbox
+  - DOMAIN-SUFFIX, dropbox.com, PROXY
+  - DOMAIN-SUFFIX, dropboxapi.com, PROXY
+  - DOMAIN-SUFFIX, dropboxstatic.com, PROXY
+  - DOMAIN-SUFFIX, dropboxcaptcha.com, PROXY
+
+  ### Spark
+  - DOMAIN-SUFFIX, smartmailcloud.com, PROXY
+
+  ### Mega
+  - DOMAIN-SUFFIX, mega.nz, PROXY
+
+  ### SpeedTest
+  - DOMAIN-SUFFIX, speedtest.net, PROXY
+  - DOMAIN-SUFFIX, adnxs.com, PROXY
+  - DOMAIN-SUFFIX, cdnst.com, PROXY
+  - DOMAIN-SUFFIX, cdnst.net, PROXY
+  - DOMAIN-SUFFIX, ooklaserver.net, PROXY
+  - DOMAIN-KEYWORD, speedtest, PROXY
+
+  ### Fast
+  - DOMAIN-SUFFIX, fast.com, PROXY
+
+  ### IP Data
+  - DOMAIN-SUFFIX, ipip.net, PROXY
+  - DOMAIN-SUFFIX, ipinfo.io, PROXY
+
+  ### Other
+  - DOMAIN-SUFFIX, wireshark.org, PROXY
+  - DOMAIN-SUFFIX, whatsmydnsserver.com, PROXY
+  - DOMAIN-SUFFIX, code2flow.com, PROXY
+  ##—————博客—————##
+  ### Medium
+  - DOMAIN-SUFFIX, medium.com, PROXY
+
+  ### Disqus
+  - DOMAIN-SUFFIX, disqus.com, PROXY
+
+  ### Reddit
+  - DOMAIN-SUFFIX, reddit.com, PROXY
+
+  ### Quora
+  - DOMAIN-SUFFIX, quora.com, PROXY
+
+  ### 个人Blog
+  - DOMAIN-SUFFIX, teddysun.com, PROXY
+  - DOMAIN-SUFFIX, swsmile.info, PROXY
+
+  ##—————其他—————##
+  ### Yandex
+  - DOMAIN-SUFFIX, yandex.net, PROXY
+  - DOMAIN-SUFFIX, yadi.sk, PROXY
+  - DOMAIN-SUFFIX, yastatic.net, PROXY
+
+  ### WiKi
+  - DOMAIN-SUFFIX, wikipedia.org, PROXY
+
+  ### Paypal
+  - DOMAIN-SUFFIX, paypal.com, PROXY
+  - DOMAIN-SUFFIX, paypalobjects.com, PROXY
+
+  ### Jigsaw
+  - DOMAIN-SUFFIX, digitalattackmap.com, PROXY
+
+  ### UBNT
+  - DOMAIN-SUFFIX, ubnt.com, PROXY
+
+  ###OpenSUSE
+  - DOMAIN-SUFFIX, opensuse.org, PROXY
+
+  ### Other
+  - DOMAIN-SUFFIX, apkpure.com, PROXY
+  - DOMAIN-SUFFIX, winudf.com, PROXY
+
+  ##-————VPN工具-————##
+  ### Wireguard
+  - DOMAIN-SUFFIX, wireguard.com, PROXY
+
+  ### Shadowsocks
+  - DOMAIN-SUFFIX, shadowsocks.org, PROXY
+
+  ### V2ray
+  - DOMAIN-SUFFIX, v2ray.com, PROXY
+
+  ### OpenVPN
+  - DOMAIN-SUFFIX, protonvpn.com, PROXY
+  - DOMAIN-SUFFIX, openvpn.net, PROXY
+  - DOMAIN-SUFFIX, ovpn.com, PROXY
+
+  ##-————Normal—————##
+  ### BBC
+  - DOMAIN-SUFFIX, bbc.com, PROXY
+  - DOMAIN-SUFFIX, bbc.co.uk, PROXY
+  - DOMAIN-SUFFIX, bbci.co.uk, PROXY
+
+  ### DWNEWS
+  - DOMAIN-SUFFIX, dwnews.com, PROXY
+  - DOMAIN-SUFFIX, dwnews.net, PROXY
+  # - DOMAIN-SUFFIX, bbci.co.uk, PROXY
+
+  ### Other
+  - DOMAIN-SUFFIX, bit.ly, PROXY
+  - DOMAIN-SUFFIX, pixiv.net, PROXY
+
+  ##—————直连—————##
+  - FINAL,DIRECT
