@@ -26,13 +26,11 @@ tag: Flutter
 8.flutter在维护树的时候认准的是widget的runtimeType和key，runtimeType和key一样的话会复用state，所以这个时候就算widget变了，树的结构也没变，比如
 
 ![](/images/flutter_state/flutter_state_2.png)
-这种写法，setstate后树的结构是没有变化的，也不会造成initstate和didChangeDependencies的调用，只会造成didUpdateWidget的调用
+这种写法，setstate后树的结构是没有变化的，也不会造成initstate和didChangeDependencies的调用，只会造成didUpdateWidget的调用deactivate，就是setstate之后如果widget被移除，就会造成deactivate的调用，并且很快会调用dispose
 
-9.deactivate，就是setstate之后如果widget被移除，就会造成deactivate的调用，并且很快会调用dispose
+9.didUpdateWidget是在state之后，如果树的结构没变，此时state被复用了，但是widget重新构建了，此时会回调didUpdateWidget
 
-10. didUpdateWidget是在state之后，如果树的结构没变，此时state被复用了，但是widget重新构建了，此时会回调didUpdateWidget
-
-11.Offstage的offstage如果为true或false，不会造成树的结构改变，此时还是只会回调didUpdateWidget，比如
+10.Offstage的offstage如果为true或false，不会造成树的结构改变，此时还是只会回调didUpdateWidget，比如
 
 ![](/images/flutter_state/flutter_state_3.png)
 
