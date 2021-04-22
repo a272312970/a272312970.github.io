@@ -14,7 +14,7 @@ tag: Flutter
 ####  5.context.dependOnInheritedWidgetOfExactType<T>()为什么只能获取最近的节点
 带着这些问题，我们来分析一下源码
 
-首先，按照官方的注解，InheritedWidget是一个允许去订阅改变他的子部件值的Widget。其实Inherited翻译过来有继承的意思，这个名字取的也挺有意思，因为他内部的实现确实有集成的意思，这个我们后面分析再说
+首先，按照官方的注解，InheritedWidget是一个允许去订阅改变他的子部件值的Widget。其实Inherited翻译过来有继承的意思，这个名字取的也挺有意思，因为他内部的实现确实有继承的意思，这个我们后面分析再说
 ```
 an inherited widget that allows clients to subscribe to changes for subparts of the value.
 ```
